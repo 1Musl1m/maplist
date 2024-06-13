@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePointsStore } from '@/store/points';
+import { usePointsStore } from "@/store/points";
 
 const pointsStore = usePointsStore();
 const { points } = storeToRefs(pointsStore);
@@ -15,11 +15,16 @@ const { points } = storeToRefs(pointsStore);
                 :center="[41.8329, -87.7327]"
                 :use-global-leaflet="false"
             >
-                <LTileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    attribution='&amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+                <LWmsTileLayer
+                    url="https://maps.heigit.org/osm-wms/service"
+                    attribution="HeiGIT <a href='https://osm-wms.de'>OSM WMS</a>"
                     layer-type="base"
-                    name="OpenStreetMap"
+                    name="osm-wms.de"
+                    :max-zoom="10"
+                    version="1.3.0"
+                    format="image/png"
+                    :transparent="true"
+                    layers="osm_auto:all"
                 />
                 <div>
                     <LMarker
@@ -29,8 +34,8 @@ const { points } = storeToRefs(pointsStore);
                     >
                         <LTooltip>
                             <div class="flex items-center">
-                                <img src="/svg/point.svg" alt="">
-                            <h2>Точка № {{ point.number }}</h2>
+                                <img src="/svg/point.svg" alt="" />
+                                <h2>Точка № {{ point.number }}</h2>
                             </div>
                             Hi! I'm staying here on this location!
                         </LTooltip>

@@ -2,6 +2,7 @@
 import { usePointsStore } from "@/store/points";
 
 const { points } = storeToRefs(usePointsStore());
+
 const pointsNumber = 6;
 const currentPage = ref<number>(1);
 
@@ -11,7 +12,7 @@ const paginatedPoints = computed(() => {
     return points.value.slice(start, end);
 });
 
-const handlePageChange = (page: number) => {
+const pageView = (page: number) => {
     currentPage.value = page;
 };
 
@@ -107,7 +108,7 @@ watch(
                 <a-pagination
                     :total="points.length"
                     :pageSize="pointsNumber"
-                    @change="handlePageChange"
+                    @change="pageView"
                 />
             </div>
         </div>
