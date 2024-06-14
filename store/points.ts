@@ -23,6 +23,7 @@ function generatePoints(count: number): Point[] {
 
 export const usePointsStore = defineStore('points', {
     state: () => ({
+        // число которое генерирует точки, можно указать нудное вам число, но по дефолту поставил 100
         points: generatePoints(100),
     }),
 });
